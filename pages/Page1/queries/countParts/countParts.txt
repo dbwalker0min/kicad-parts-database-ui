@@ -1,0 +1,9 @@
+SELECT count(*) AS total
+FROM parts p
+WHERE ( {{ SelectCategory.selectedOptionValue ? 'p.category_id = ' + SelectCategory.selectedOptionValue : '1=1' }} )
+  AND (
+    {{ InputSearch.text
+        ? "to_tsvector('english', coalesce(p.name,'') || ' ' || coalesce(p.keywords,'') || ' ' || coalesce(p.description,'')) @@ plainto_tsquery('" + InputSearch.text + "')"
+        : '1=1' }}
+  )
+  AND p.is_active = TRUE;

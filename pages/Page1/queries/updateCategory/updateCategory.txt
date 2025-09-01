@@ -1,0 +1,7 @@
+UPDATE categories
+SET type_key     = {{CategoryForm.data.type_key}},
+    subtype_key  = {{CategoryForm.data.subtype_key}},
+    display_name = {{CategoryForm.data.display_name}},
+    description  = {{CategoryForm.data.description}},
+    is_active    = {{!!CategoryForm.data.is_active}}
+WHERE id = {{ Number(CategoryForm.data.id) }};

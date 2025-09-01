@@ -1,0 +1,4 @@
+SELECT id, type_key, subtype_key, display_name, description, is_active
+FROM categories
+WHERE (CASE WHEN {{ ToggleShowInactive.isSwitchedOn }} THEN TRUE ELSE is_active END)
+ORDER BY type_key, subtype_key;

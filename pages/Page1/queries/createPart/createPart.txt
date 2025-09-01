@@ -1,0 +1,21 @@
+INSERT INTO parts (
+  name, category_id, value, reference, footprint, symbol_id,
+  description, datasheet, keywords, fields,
+  exclude_from_bom, exclude_from_board, exclude_from_sim, is_active
+) VALUES (
+  {{ PartForm.data.name }},
+  {{ Number(PartForm.data.category_id) }},
+  {{ PartForm.data.value }},
+  {{ PartForm.data.reference }},
+  {{ PartForm.data.footprint }},
+  {{ PartForm.data.symbol_id }},
+  {{ PartForm.data.description }},
+  {{ PartForm.data.datasheet }},
+  {{ PartForm.data.keywords }},
+  {{ JSON.stringify( (() => { try { return JSON.parse(FieldsEditor.text) } catch(e){ showAlert('Invalid JSON in custom fields','error'); throw e } })() ) }},
+  {{ !!PartForm.data.exclude_from_bom }},
+  {{ !!PartForm.data.exclude_from_board }},
+  {{ !!PartForm.data.exclude_from_sim }},
+  TRUE
+)
+RETURNING sequence_number;

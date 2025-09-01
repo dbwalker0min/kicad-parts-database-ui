@@ -1,0 +1,7 @@
+INSERT INTO categories (type_key, subtype_key, display_name, description, is_active)
+VALUES ( {{CategoryForm.data.type_key}},
+         {{CategoryForm.data.subtype_key}},
+         {{CategoryForm.data.display_name}},
+         {{CategoryForm.data.description}},
+         {{!!CategoryForm.data.is_active}} )
+RETURNING id;

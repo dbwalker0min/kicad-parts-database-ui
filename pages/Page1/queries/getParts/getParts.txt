@@ -1,0 +1,25 @@
+WITH base AS (
+  SELECT p.sequence_number, p.name, p.value, p.reference, p.footprint, p.symbol_id,
+         p.description, p.datasheet, p.keywords, p.fields,
+         p.exclude_from_bom, p.exclude_from_board, p.exclude_from_sim,
+         p.is_active, p.created_at, p.updated_at,
+         c.id AS category_id, c.type_key, c.subtype_key, c.display_name
+  FROM parts p
+  JOIN categories c ON c.id = p.category_id
+  WHERE ( {{ SelectCategory.selectedOptionValue ? 'p.category_id = ' + SelectCategory.selectedOptionValue : '1=1' }} )
+    AND (
+      {{ InputSearch.text
+          ? "to_tsvector('english', coalesce(p.name,'') || ' ' || coalesce(p.keywords,'') || ' ' || coalesce(p.description,'')) @@ plainto_tsquery('" + InputSearch.text + "')"
+          : '1=1' }}
+    )
+    AND p.is_active = TRUE
+)
+SELECT *
+FROM base
+ORDER BY
+  CASE WHEN {{TableParts.sortOrder?.column === 'name'       }} THEN name       END {{ TableParts.sortOrder?.order || 'ASC' }},
+  CASE WHEN {{TableParts.sortOrder?.column === 'value'      }} THEN value      END {{ TableParts.sortOrder?.order || 'ASC' }},
+  CASE WHEN {{TableParts.sortOrder?.column === 'updated_at' }} THEN updated_at END {{ TableParts.sortOrder?.order || 'DESC' }},
+  sequence_number ASC
+LIMIT {{ TableParts.pageSize }}
+OFFSET {{ (TableParts.pageNo - 1) * TableParts.pageSize }};

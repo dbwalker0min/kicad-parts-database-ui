@@ -1,0 +1,16 @@
+UPDATE parts SET
+  name               = {{ PartForm.data.name }},
+  category_id        = {{ Number(PartForm.data.category_id) }},
+  value              = {{ PartForm.data.value }},
+  reference          = {{ PartForm.data.reference }},
+  footprint          = {{ PartForm.data.footprint }},
+  symbol_id          = {{ PartForm.data.symbol_id }},
+  description        = {{ PartForm.data.description }},
+  datasheet          = {{ PartForm.data.datasheet }},
+  keywords           = {{ PartForm.data.keywords }},
+  fields             = {{ JSON.stringify( (() => { try { return JSON.parse(FieldsEditor.text) } catch(e){ showAlert('Invalid JSON in custom fields','error'); throw e } })() ) }},
+  exclude_from_bom   = {{ !!PartForm.data.exclude_from_bom }},
+  exclude_from_board = {{ !!PartForm.data.exclude_from_board }},
+  exclude_from_sim   = {{ !!PartForm.data.exclude_from_sim }},
+  updated_at         = now()
+WHERE sequence_number = {{ Number(PartForm.data.sequence_number) }};
