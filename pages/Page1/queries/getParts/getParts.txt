@@ -1,17 +1,10 @@
 WITH base AS (
-  SELECT p.sequence_number, p.name, p.value, p.reference, p.footprint, p.symbol_id,
+  SELECT p.sequence_number, c.display_name as category, p.name, p.value,
          p.description, p.datasheet, p.keywords, p.fields,
-         p.exclude_from_bom, p.exclude_from_board, p.exclude_from_sim,
-         p.is_active, p.created_at, p.updated_at,
-         c.id AS category_id, c.type_key, c.subtype_key, c.display_name
+         p.created_at, p.updated_at
   FROM parts p
   JOIN categories c ON c.id = p.category_id
   WHERE ( {{ SelectCategory.selectedOptionValue ? 'p.category_id = ' + SelectCategory.selectedOptionValue : '1=1' }} )
-    AND (
-      {{ InputSearch.text
-          ? "to_tsvector('english', coalesce(p.name,'') || ' ' || coalesce(p.keywords,'') || ' ' || coalesce(p.description,'')) @@ plainto_tsquery('" + InputSearch.text + "')"
-          : '1=1' }}
-    )
     AND p.is_active = TRUE
 )
 SELECT *

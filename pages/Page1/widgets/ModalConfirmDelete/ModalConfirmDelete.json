@@ -1,0 +1,85 @@
+{
+  "animateLoading": true,
+  "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+  "bottomRow": 267,
+  "boxShadow": "none",
+  "canEscapeKeyClose": true,
+  "canOutsideClickClose": true,
+  "children": [
+    {
+      "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
+      "bottomRow": 240,
+      "boxShadow": "{{appsmith.theme.boxShadow.appBoxShadow}}",
+      "canExtend": true,
+      "detachFromLayout": true,
+      "dynamicBindingPathList": [
+        {
+          "key": "borderRadius"
+        },
+        {
+          "key": "boxShadow"
+        }
+      ],
+      "dynamicHeight": "AUTO_HEIGHT",
+      "flexLayers": [],
+      "isDisabled": false,
+      "isLoading": false,
+      "isVisible": true,
+      "key": "y6yp7oyti7",
+      "leftColumn": 0,
+      "maxDynamicHeight": 9000,
+      "minDynamicHeight": 4,
+      "minHeight": 240,
+      "minWidth": 450,
+      "mobileBottomRow": 240,
+      "mobileLeftColumn": 0,
+      "mobileRightColumn": 442.5,
+      "mobileTopRow": 0,
+      "needsErrorInfo": false,
+      "parentColumnSpace": 1,
+      "parentId": "a90c1jnl6o",
+      "parentRowSpace": 1,
+      "renderMode": "CANVAS",
+      "responsiveBehavior": "fill",
+      "rightColumn": 442.5,
+      "shouldScrollContents": false,
+      "topRow": 0,
+      "type": "CANVAS_WIDGET",
+      "version": 1,
+      "widgetId": "zw1e4s3my7",
+      "widgetName": "Canvas2"
+    }
+  ],
+  "detachFromLayout": true,
+  "dynamicBindingPathList": [
+    {
+      "key": "borderRadius"
+    }
+  ],
+  "dynamicHeight": "AUTO_HEIGHT",
+  "height": 240,
+  "isCanvas": true,
+  "isLoading": false,
+  "key": "5tuzk1lk59",
+  "leftColumn": 19,
+  "maxDynamicHeight": 9000,
+  "minDynamicHeight": 24,
+  "minHeight": 240,
+  "mobileBottomRow": 51,
+  "mobileLeftColumn": 19,
+  "mobileRightColumn": 43,
+  "mobileTopRow": 27,
+  "needsErrorInfo": false,
+  "parentColumnSpace": 18.4375,
+  "parentId": "0",
+  "parentRowSpace": 10,
+  "renderMode": "CANVAS",
+  "rightColumn": 43,
+  "shouldScrollContents": true,
+  "topRow": 27,
+  "type": "MODAL_WIDGET",
+  "version": 2,
+  "widgetId": "a90c1jnl6o",
+  "widgetName": "ModalConfirmDelete",
+  "width": 456
+}

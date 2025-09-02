@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "INSERT INTO categories (type_key, subtype_key, display_name, description, is_active)\nVALUES ( {{CategoryForm.data.type_key}},\n         {{CategoryForm.data.subtype_key}},\n         {{CategoryForm.data.display_name}},\n         {{CategoryForm.data.description}},\n         {{!!CategoryForm.data.is_active}} )\nRETURNING id;\n",
+      "body": "INSERT INTO categories (display_name, description, is_active)\nVALUES ( {{InputDialogCatCategory.text}}, {{InputDialogCatDescription.text}}, {{CheckboxDialogCatActive.isChecked}})\nRETURNING id;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

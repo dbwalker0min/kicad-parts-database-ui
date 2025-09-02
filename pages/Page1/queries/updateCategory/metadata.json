@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "UPDATE categories\nSET type_key     = {{CategoryForm.data.type_key}},\n    subtype_key  = {{CategoryForm.data.subtype_key}},\n    display_name = {{CategoryForm.data.display_name}},\n    description  = {{CategoryForm.data.description}},\n    is_active    = {{!!CategoryForm.data.is_active}}\nWHERE id = {{ Number(CategoryForm.data.id) }};\n",
+      "body": "UPDATE categories\nSET \n    display_name = {{InputDialogCatCategory.text}}, \n\t\tdescription = {{InputDialogCatDescription.text}}, \n\t\tis_active = {{CheckboxDialogCatActive.isChecked}}\nWHERE id = {{ Number(SelectCategory.selectedOptionValue) }};\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

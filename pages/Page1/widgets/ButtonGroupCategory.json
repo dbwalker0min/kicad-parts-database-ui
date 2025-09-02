@@ -1,7 +1,7 @@
 {
   "animateLoading": true,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 12,
+  "bottomRow": 10,
   "boxShadow": "none",
   "buttonVariant": "PRIMARY",
   "childStylesheet": {
@@ -38,6 +38,9 @@
     },
     {
       "key": "groupButtons.groupButton3.menuItems.menuItem1.onClick"
+    },
+    {
+      "key": "groupButtons.groupButton1.onClick"
     }
   ],
   "dynamicTriggerPathList": [
@@ -46,6 +49,12 @@
     },
     {
       "key": "groupButtons.groupButton1.onClick"
+    },
+    {
+      "key": "groupButtons.groupButton2.onClick"
+    },
+    {
+      "key": "groupButtons.groupButton3.onClick"
     }
   ],
   "groupButtons": {
@@ -75,6 +84,7 @@
       "isVisible": true,
       "label": "",
       "menuItems": {},
+      "onClick": "{{JSCategoryDialog.edit();}}",
       "placement": "CENTER",
       "widgetId": ""
     },
@@ -127,6 +137,7 @@
           "widgetId": ""
         }
       },
+      "onClick": "{{JSCategoryDialog.askDelete();}}",
       "placement": "CENTER",
       "widgetId": ""
     }
@@ -143,15 +154,15 @@
   "mobileTopRow": 12,
   "needsErrorInfo": false,
   "orientation": "horizontal",
-  "originalBottomRow": 13,
-  "originalTopRow": 9,
+  "originalBottomRow": 10,
+  "originalTopRow": 6,
   "parentColumnSpace": 15.828125,
   "parentId": "0",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "responsiveBehavior": "fill",
   "rightColumn": 32,
-  "topRow": 8,
+  "topRow": 6,
   "type": "BUTTON_GROUP_WIDGET",
   "version": 1,
   "widgetId": "296bvth8zh",

@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT count(*) AS total\nFROM parts p\nWHERE ( {{ SelectCategory.selectedOptionValue ? 'p.category_id = ' + SelectCategory.selectedOptionValue : '1=1' }} )\n  AND (\n    {{ InputSearch.text\n        ? \"to_tsvector('english', coalesce(p.name,'') || ' ' || coalesce(p.keywords,'') || ' ' || coalesce(p.description,'')) @@ plainto_tsquery('\" + InputSearch.text + \"')\"\n        : '1=1' }}\n  )\n  AND p.is_active = TRUE;\n",
+      "body": "SELECT count(*) AS total\nFROM parts p\nWHERE ( {{ SelectCategory.selectedOptionValue ? 'p.category_id = ' + SelectCategory.selectedOptionValue : '1=1' }} )\n  AND p.is_active = TRUE;\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [

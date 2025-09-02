@@ -1,104 +1,96 @@
 export default {
-  blank() {
-    return { id: null, display_name: "", description: "", is_active: true };
-  },
+	blank() {
+		return { id: null, display_name: "", description: "", is_active: true };
+	},
 
-  ensureSelected() {
-    if (!SelectCategory.selectedOptionValue) {
-      showAlert("Pick a category first.", "warning"); 
-      return false;
-    }
-    return true;
-  },
+	ensureSelected() {
+		if (!SelectCategory.selectedOptionValue) {
+			showAlert("Pick a category first.", "warning"); 
+			return false;
+		}
+		return true;
+	},
 
-  onButtonClick(label) {
-    switch ((label || "").toLowerCase()) {
-      case "new":    return this.new();
-      case "edit":   return this.edit();
-      case "delete": return this.askDelete();
-    }
-  },
-	
-  // When the Select changes, load that category into the form for editing
-  loadForEdit() {
-    const opt = SelectCategory.selectedOptionValue;
-    if (!opt) return; // nothing selected
-    const row = currentCategory.data[0]
-    if (row) {
+	// When the Select changes, load that category into the form for editing
+	loadForEdit() {
+		const opt = SelectCategory.selectedOptionValue;
+		if (!opt) return; // nothing selected
+		const row = currentCategory.data[0]
+		if (row) {
 			InputDialogCatCategory.setValue(row.display_name ?? "");
 			InputDialogCatDescription.setValue(row.description ?? "");
 			CheckboxDialogCatActive.setValue(!!row.is_active);
-    }
-  },
+		}
+	},
 
-  newCat() {
-		console.log("New…");
-    // (optional) reset modal & its children first
-    resetWidget("ModalCategoryForm", true);
+	newCat() {
+		// set your fields
+		TextDialogCatTitle.setText("New Category")
+		InputDialogCatCategory.setValue("");
+		InputDialogCatDescription.setValue("");
+		CheckboxDialogCatActive.setValue(true); // use setChecked for a Checkbox
 
-    // set your fields
-    InputDialogCatCategory.setValue("");
-    InputDialogCatDescription.setValue("");
-    CheckboxDialogCatActive.setValue(true); // use setChecked for a Checkbox
+		storeValue("catMode", "new");
+		showModal(ModalCategoryForm.name);  
+	},
 
-    storeValue("catMode", "new");
-    showModal("ModalCategoryForm");  
-  },
+	edit() {
+		if (!this.ensureSelected()) return;
+		TextDialogCatTitle.setText("Edit Category")
 
-  edit() {
-    if (!this.ensureSelected()) return;
-    storeValue("catMode", "edit");
-    const row = getCategories.data.find(c => c.id === Number(SelectCategory.selectedOptionValue));
-    if (!row) return showAlert("Could not load the selected category.", "error");
-    showModal(ModalCategoryForm.name);
-  },
+		storeValue("catMode", "edit");
+		const row = getCategories.data.find(c => c.id === Number(SelectCategory.selectedOptionValue));
+		if (!row) return showAlert("Could not load the selected category.", "error");
+		InputDialogCatCategory.setValue(row.display_name);
+		InputDialogCatDescription.setValue(row.description);
+		CheckboxDialogCatActive.setValue(row.is_active);
+		showModal(ModalCategoryForm.name);
+	},
 
-  askDelete() {
-    if (!this.ensureSelected()) return;
-    showModal("Modal_ConfirmDelete");
-  },
+	askDelete() {
+		if (!this.ensureSelected()) return;
+		showModal(ModalConfirmDelete.name);
+	},
 
-  async save() {
-    const mode = appsmith.store.catMode || (CategoryForm.data?.id ? "edit" : "new");
-    const d = CategoryForm.data;
+	async save() {
+		const mode = appsmith.store.catMode;
 
-    if (!d.display_name?.trim()) {
-      showAlert("Name is required.", "error");
-      return;
-    }
+		if (!InputDialogCatCategory.text.trim()) {
+			showAlert("Name is required.", "error");
+			return;
+		}
 
-    try {
-      if (mode === "new") {
-        const res = await createCategory.run();
-        // optionally select the new category
-        SelectCategory.setSelectedOption(String(res[0].id));
-      } else {
-        await updateCategory.run();
-      }
-      closeModal("Modal_Category");
-      await getCategories.run();
-      showAlert(mode === "new" ? "Category created." : "Category updated.", "success");
-    } catch (e) {
-      const msg = (createCategory.isError ? createCategory.error : updateCategory.error) || (""+e);
-      if (msg.toLowerCase().includes("unique")) {
-        showAlert("A category with that name already exists.", "error");
-      } else {
-        showAlert("Save failed: " + msg, "error");
-      }
-      throw e;
-    }
-  },
+		try {
+			if (mode === "new") {
+				await createCategory.run();
+			} else {
+				await updateCategory.run();
+			}
+			closeModal(ModalCategoryForm.name);
+			await getCategories.run();
+			showAlert(mode === "new" ? "Category created." : "Category updated.", "success");
+		} catch (e) {
+			showAlert("A category with that name already exists.", "error");
+			throw e;
+		}
+	},
+	
+	async confirmDelete() {
+  	const row = getCategories.data.find(c => c.id === Number(SelectCategory.selectedOptionValue));
 
-  async confirmDelete() {
-    try {
-      await softDeleteCategory.run();
-      closeModal("Modal_ConfirmDelete");
-      await getCategories.run();
-      SelectCategory.setSelectedOption(""); // clear selection after delete
-      showAlert("Category set inactive.", "success");
-    } catch (e) {
-      showAlert("Delete failed: " + softDeleteCategory.error, "error");
-      throw e;
-    }
-  }
+		InputDialogCatCategory.setValue(row.display_name);
+		InputDialogCatDescription.setValue(row.description);
+		CheckboxDialogCatActive.setValue(false);
+		closeModal(ModalConfirmDelete.name);
+		
+		try {
+			await updateCategory.run();
+			SelectCategory.setSelectedOption(""); // clear selection after delete
+			getCategories.run();
+			showAlert("Category set inactive.", "success");
+		} catch (e) {
+			showAlert("Delete failed");
+			throw e;
+		}
+	}
 }

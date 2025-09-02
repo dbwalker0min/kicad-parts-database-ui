@@ -14,51 +14,44 @@
       "key": "borderRadius"
     }
   ],
-  "dynamicHeight": "FIXED",
-  "dynamicPropertyPathList": [
-    {
-      "key": "onTextChanged"
-    }
-  ],
-  "dynamicTriggerPathList": [
-    {
-      "key": "onTextChanged"
-    }
-  ],
+  "dynamicHeight": "AUTO_HEIGHT",
+  "dynamicTriggerPathList": [],
   "iconAlign": "left",
-  "inputType": "TEXT",
+  "inputType": "MULTI_LINE_TEXT",
   "isDisabled": false,
   "isLoading": false,
   "isRequired": false,
   "isVisible": true,
-  "key": "7yec179lu6",
-  "label": "Search",
+  "key": "3jc3hnpwx5",
+  "label": "",
   "labelAlignment": "left",
   "labelPosition": "Top",
   "labelStyle": "",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 42,
+  "leftColumn": 7,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
-  "mobileBottomRow": 13,
-  "mobileLeftColumn": 29,
-  "mobileRightColumn": 49,
-  "mobileTopRow": 6,
+  "mobileBottomRow": 14,
+  "mobileLeftColumn": 7,
+  "mobileRightColumn": 27,
+  "mobileTopRow": 7,
   "needsErrorInfo": false,
-  "onTextChanged": "{{getParts.run()}}",
-  "parentColumnSpace": 19.84375,
-  "parentId": "0",
+  "originalBottomRow": 14,
+  "originalTopRow": 6,
+  "parentColumnSpace": 6.9375,
+  "parentId": "zw1e4s3my7",
   "parentRowSpace": 10,
   "renderMode": "CANVAS",
   "resetOnSubmit": true,
   "responsiveBehavior": "fill",
-  "rightColumn": 62,
+  "rightColumn": 56,
+  "shouldAllowAutofill": false,
   "showStepArrows": false,
-  "topRow": 7,
+  "topRow": 6,
   "type": "INPUT_WIDGET_V2",
   "version": 2,
-  "widgetId": "qp1g0cuuiu",
-  "widgetName": "InputSearch"
+  "widgetId": "jmaslvieo6",
+  "widgetName": "InputDeleteMessage"
 }
