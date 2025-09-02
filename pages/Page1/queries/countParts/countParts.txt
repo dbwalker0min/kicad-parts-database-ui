@@ -1,4 +1,0 @@
-SELECT count(*) AS total
-FROM parts p
-WHERE ( {{ SelectCategory.selectedOptionValue ? 'p.category_id = ' + SelectCategory.selectedOptionValue : '1=1' }} )
-  AND p.is_active = TRUE;

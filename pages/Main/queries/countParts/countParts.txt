@@ -1,0 +1,4 @@
+SELECT count(*) AS total
+FROM parts p
+WHERE ( {{ SelectCategory.selectedOptionValue.trim() ? 'p.category_id = ' + SelectCategory.selectedOptionValue : 'TRUE'}})
+  AND p.is_active = TRUE;
