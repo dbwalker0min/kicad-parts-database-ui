@@ -1,0 +1,2 @@
+SELECT * FROM categories
+where id = {{ SelectCategory.selectedOptionValue }}

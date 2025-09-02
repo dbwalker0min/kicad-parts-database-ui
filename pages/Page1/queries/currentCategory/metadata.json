@@ -1,11 +1,11 @@
 {
-  "gitSyncId": "68b5f8a32a80ff1abfed6783_3c96d893-d0b3-4458-a025-49908b445a1f",
-  "id": "Page1_getCategories",
+  "gitSyncId": "68b614bc2095503390660a2c_5d13e6bc-684f-45ed-b3ab-44919f43bb2e",
+  "id": "Page1_currentCategory",
   "pluginId": "postgres-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT id, display_name, description, is_active\nFROM categories\nWHERE (CASE WHEN {{ ToggleShowInactive.isSwitchedOn }} THEN TRUE ELSE is_active END)\nORDER BY display_name;\n",
+      "body": "SELECT * FROM categories\nwhere id = {{ SelectCategory.selectedOptionValue }}",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -27,9 +27,9 @@
         "key": "body"
       }
     ],
-    "name": "getCategories",
+    "name": "currentCategory",
     "pageId": "Page1",
-    "runBehaviour": "AUTOMATIC",
+    "runBehaviour": "MANUAL",
     "userSetOnLoad": false
   }
 }

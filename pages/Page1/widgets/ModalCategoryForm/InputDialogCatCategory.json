@@ -1,62 +1,56 @@
 {
   "accentColor": "{{appsmith.theme.colors.primaryColor}}",
   "animateLoading": true,
+  "autoFocus": false,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 12,
+  "bottomRow": 10,
   "boxShadow": "none",
-  "defaultOptionValue": "",
+  "defaultText": "",
   "dynamicBindingPathList": [
     {
       "key": "accentColor"
     },
     {
       "key": "borderRadius"
-    },
-    {
-      "key": "sourceData"
     }
   ],
   "dynamicHeight": "FIXED",
-  "dynamicPropertyPathList": [
-    {
-      "key": "sourceData"
-    }
-  ],
   "dynamicTriggerPathList": [],
+  "iconAlign": "left",
+  "inputType": "TEXT",
   "isDisabled": false,
-  "isFilterable": true,
   "isLoading": false,
   "isRequired": false,
   "isVisible": true,
-  "key": "3ma49hvsa7",
+  "key": "7f2xajeuv4",
+  "label": "Category",
   "labelAlignment": "left",
-  "labelPosition": "Top",
-  "labelText": "Label",
+  "labelPosition": "Left",
+  "labelStyle": "",
   "labelTextSize": "0.875rem",
-  "labelWidth": 5,
-  "leftColumn": 3,
+  "labelWidth": "11",
+  "leftColumn": 1,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
   "mobileBottomRow": 13,
-  "mobileLeftColumn": 3,
-  "mobileRightColumn": 23,
+  "mobileLeftColumn": 9,
+  "mobileRightColumn": 29,
   "mobileTopRow": 6,
   "needsErrorInfo": false,
-  "optionLabel": "display_name",
-  "optionValue": "id",
-  "parentColumnSpace": 19.84375,
-  "parentId": "0",
+  "originalBottomRow": 15,
+  "originalTopRow": 11,
+  "parentColumnSpace": 14.03125,
+  "parentId": "3mbnwvd44t",
   "parentRowSpace": 10,
-  "placeholderText": "Select option",
   "renderMode": "CANVAS",
+  "resetOnSubmit": true,
   "responsiveBehavior": "fill",
-  "rightColumn": 23,
-  "serverSideFiltering": false,
-  "sourceData": "{{ getCategories.data}}",
-  "topRow": 5,
-  "type": "SELECT_WIDGET",
-  "version": 1,
-  "widgetId": "fwwiw1lo7v",
-  "widgetName": "SelectCategory"
+  "rightColumn": 50,
+  "showStepArrows": false,
+  "topRow": 6,
+  "type": "INPUT_WIDGET_V2",
+  "version": 2,
+  "widgetId": "iezdlivuv7",
+  "widgetName": "InputDialogCatCategory"
 }
